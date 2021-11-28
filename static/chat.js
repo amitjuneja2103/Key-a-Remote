@@ -1,20 +1,28 @@
 
+
 function submit()
 {
 	var entered = $('#message').val();
-	var lines = entered.split(/\n/); 
-	console.log(typeof entered);
-	for(var msg in lines){
-		if (lines[msg].length == 0)
-			return;
-		console.log()
-		$.ajax("/msg", {
-			method: "post",
-			data: lines[msg],
-		});
-		$("#message").val("");
+	entered="text "+entered;
+	$.ajax("/msg", {
+		method: "post",
+		data: entered,
+	});
+	// var lines = entered.split(/\n/); 
+	// console.log(typeof entered);
+	// for(var msg in lines){
+	// 	if (lines[msg].length == 0)
+	// 		return;
+	// 	console.log()
+	// 	$.ajax("/msg", {
+	// 		method: "post",
+	// 		data: lines[msg],
+	// 	});
+	// 	$("#message").val("");
+	// 	show_bottom();
+	// }
+	$("#message").val("");
 		show_bottom();
-	}
 }
 
 function show_bottom()

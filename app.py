@@ -19,6 +19,10 @@ MAX_PASSWORD = 256
 MIN_PASSWORD = 0
 DISCONNECT_MESSAGE="stop"
 F=0
+val_fun1=""
+val_fun2=""
+
+
 
 SESSIONS = {} # cookie -> user
 USERS = {} # user -> password
@@ -28,6 +32,18 @@ def Type(word):
 	keyboard.type(word1)
 	keyboard.press(Key.enter)
 	keyboard.release(Key.enter)
+
+def Press_key(str):
+	log.info(str)
+	list1 = str.split("+")
+	if(list1[0]==" ctrl"):
+		with keyboard.pressed(Key.ctrl):
+			keyboard.press(str[-1])
+			keyboard.release(str[-1])
+	if(list1[0]==" win"):
+		with keyboard.pressed(Key.cmd):
+			keyboard.press(list1[1])
+			keyboard.release(list1[1])
 
 def gencookie():
 	bits = os.urandom(15)
@@ -149,6 +165,7 @@ def db_load():
 
 POLLERS = []
 
+
 MESSAGES = db_load()
 DB_FILE = open('messages.json', 'a')
 
@@ -161,14 +178,34 @@ def add_message(msg):
 		p.close()
 	POLLERS.clear()
 
+val_fun1=""
+val_fun2=""
+
 async def handle_msg_post(r):
 	if not check_cookie(r):
 		return
 	n = int(r.headers['content-length'])
 	msg = (await r.reader.read(n)).decode()
 	log.info(f'Message from {r.user!r}: {msg!r}')
+	test=msg[0:5]
+	msg1=msg[4:]
+	global val_fun1
+	global val_fun2
+	log.info(test)
+	if (test=="text "):
+		Type(msg1)
+	elif (test=="set1 "):
+		val_fun1=msg1
+	elif (test=="set2 "):
+		val_fun2=msg1
+	elif (test=="fun1 "):
+		Press_key(val_fun1)
+	elif(test=="fun2 "):
+		Press_key(val_fun2)
+
+
 	# if F==1 and msg!= DISCONNECT_MESSAGE:
-	Type(msg)
+	
 	# elif msg == "type":
 	# 	F=1
 	add_message({'data': msg, 'user': r.user})
@@ -196,6 +233,5 @@ HTTP_HANDLERS = {
 	'GET /login': handle_login,
 	'GET /newui': handle_chat,
 	'POST /msg': handle_msg_post,
-	'GET /msg': handle_msg_get,
-	
+	'GET /msg': handle_msg_get
 }
