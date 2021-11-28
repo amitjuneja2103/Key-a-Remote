@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    <meta charset="utf-8">
+	<title>Hit-It</title>
+	<meta name="description" content="  ">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="shortcut icon" href="images/7964.jpg">
+
+    <link href="chat.css" rel="stylesheet">
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+    crossorigin="anonymous">
+<link rel="stylesheet" href="main.css">
+<link rel="stylesheet" href="newuicss.css">
+
+
+</head>
+<body onkeyup="if (event.key == 'Enter') submit()">
+<!-- 
+NAVBAR -->
+<div>
+        <nav class="navbar navbar-expand-sm navbar-dark bg-primary" style="padding-left: 2%; padding-right: 2%;">
+        <a href="#" class="navbar-brand">KEY-A-REMOTE</a>
+        <button class="navbar-toggler" data-toggle="collapse" data-target="#navbarMenu">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarMenu">
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a href="newui.html" class="nav-link">HOME</a>
+                </li>
+                
+                <li class="nav-item">
+                    <a href="customize.html" class="nav-link">CUSTOMIZE</a>
+                </li>
+
+                
+                <li class="nav-item">
+                    <a href="about.html" class="nav-link">ABOUT</a>
+                </li>
+
+            </ul>
+        </div>
+
+    </nav>
+
+</div>
+
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+        crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+        crossorigin="anonymous"></script>
+<!-- 
+navbar ends here -->
+
+    <div class="main">
+        <div id="chatlog" onscroll="on_scroll(event)"></div>
+	<div class="new_msg" onclick="show_bottom()">Unread</div>
+        <div class="sender">
+            <textarea id="message" placeholder="Type your message"></textarea>
+            <!-- <input id="message" type="text" placeholder="Type your message"> -->
+            <button id="send" onclick="submit()"><img src="images/plane.svg"></button>
+        </div>
+    </div>
+
+    <!-- SCRIPTS SCRIPTS SCRIPTS -->
+
+    <script type="text/javascript" src="jquery.js"></script>
+
+    <script type="text/javascript" src="chat.js"></script>
+
+</body>
+</html>

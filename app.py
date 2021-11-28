@@ -118,19 +118,19 @@ async def handle_login(r):
 		r.end_headers()
 		return
 	r.start_response(302, 'Found')
-	r.send_header('Location', '/chat')
+	r.send_header('Location', '/newui')
 	r.send_header('Set-Cookie', 'SESSION='+cookie)
 	r.end_headers()
 
 async def handle_index(r):
 	r.start_response(302, 'Found')
-	r.send_header('Location', '/chat')
+	r.send_header('Location', '/newui')
 	r.end_headers()
 
 async def handle_chat(r):
 	if not check_cookie(r):
 		return
-	await serve_file(r, 'static/chat.html')
+	await serve_file(r, 'static/newui.html')
 
 def db_load():
 	a = []
@@ -194,7 +194,8 @@ async def handle_msg_get(r):
 HTTP_HANDLERS = {
 	'GET /': handle_index,
 	'GET /login': handle_login,
-	'GET /chat': handle_chat,
+	'GET /newui': handle_chat,
 	'POST /msg': handle_msg_post,
 	'GET /msg': handle_msg_get,
+	
 }

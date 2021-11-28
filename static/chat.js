@@ -1,4 +1,4 @@
-alert("Make sure of cursor on Server side");
+
 function submit()
 {
 	var entered = $('#message').val();
