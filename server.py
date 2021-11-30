@@ -78,7 +78,7 @@ loop = asyncio.get_event_loop()
 coro = asyncio.start_server(handle_tcp, args.bind, args.port, loop=loop)
 server = loop.run_until_complete(coro)
 
-# Serve requests until Ctrl+C is pressed
+# Serve requests until Ctrl+c is pressed
 log.info(f'Serving on {server.sockets[0].getsockname()}')
 try:
     loop.run_forever()
